@@ -1,0 +1,59 @@
+##
+## Common settings for hdf5 and phdf5
+##
+
+BUILDSYSTEM = cmake
+
+MODULES = zlib
+DEPENDSON = zlib
+
+# szip & libaec:
+# https://github.com/HDFGroup/hdf5/blob/develop/docs/INSTALL_Filters.md#libaec-szip-options
+HAS_SZIP==OFF SZIP_OPTIONS = -D LIBAEC_USE_LOCALCONTENT=OFF
+HAS_SZIP==ON  SZIP_OPTIONS = -D LIBAEC_PACKAGE_NAME=libaec
+HAS_SZIP==ON  MODULES   += libaec
+HAS_SZIP==ON  DEPENDSON += libaec
+
+TESTING = ON
+THREADSAFE = ON
+
+# unsupported is needed because C++ & parallel is untested in the distro
+# https://github.com/HDFGroup/hdf5/issues/5683
+
+# zlib trouble:
+# https://forum.hdfgroup.org/t/netcdf-complains-about-hdf5-2/13852
+# enable option has been renamed
+
+CMAKEFLAGS = \
+  -D HDF5_ENABLE_PLUGIN_SUPPORT=OFF \
+  -D HDF5_ENABLE_THREADSAFE=${THREADSAFE} \
+  -D BUILD_TESTING:BOOL=${TESTING} \
+  -D CMAKE_EXE_LINKER_FLAGS=-lpthread \
+  \
+  -D HDF5_ALLOW_EXTERNAL_SUPPORT=ON \
+  \
+  -D HDF5_ENABLE_SZIP_SUPPORT=${HAS_SZIP} \
+  ${SZIP_OPTIONS} \
+  \
+  -D HDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON \
+  -D HDF5_ENABLE_ZLIB_SUPPORT:BOOL=ON \
+  -D ZLIB_ROOT=${TACC_ZLIB_DIR} \
+  -D ZLIB_INCLUDE_DIR:PATH=${TACC_ZLIB_INC} \
+  -D ZLIB_LIBRARY:PATH=${TACC_ZLIB_LIB}/libz.so \
+  \
+  -D ALLOW_UNSUPPORTED=ON \
+  -D HDF5_ALLOW_UNSUPPORTED=ON \
+  -D HDF5_BUILD_FORTRAN:BOOL=${HDFFORTRAN} \
+  -D HDF5_BUILD_CPP_LIB:BOOL=ON \
+  -D HDF5_ENABLE_PARALLEL:BOOL=${HDF5PARALLEL}
+
+HASBIN=1
+PKGCONFIGLIB = pkgconfig
+PREFIXPATHSET = 1
+MODULENOTES = Thread-safe mode enabled
+FAMILY = hdf5
+
+exit old options
+
+This does not mean what you think it means:
+  -D ZLIB_USE_EXTERNAL=ON

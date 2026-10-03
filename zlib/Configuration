@@ -1,0 +1,20 @@
+################################################################
+####
+#### Makefile for ZLIB installation
+####
+################################################################
+
+PACKAGE = zlib
+ABOUT = A massively spiffy yet delicately unobtrusive compression library.
+URL = https://github.com/madler/zlib
+PACKAGEVERSION = 1.3.2
+DOWNLOADURL = https://github.com/madler/zlib/releases/download/v${PACKAGEVERSION}/zlib-${PACKAGEVERSION}.tar.gz
+
+MODE = seq
+
+BUILDSYSTEM = cmake
+CMAKEFLAGS=\
+  -D CMAKE_C_FLAGS=-fPIC \
+  -D CMAKE_CXX_FLAGS=-fPIC
+PKGCONFIG = share/pkgconfig
+PREFIXPATHSET = 1

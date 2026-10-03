@@ -1,0 +1,22 @@
+################################################################
+####
+#### Makefile for CXXOPTS installation
+####
+################################################################
+
+PACKAGE = cxxopts
+ABOUT = Lightweight C++ command line option parser
+PACKAGEVERSION = 3.3.1
+URL = https://github.com/jarro2783/cxxopts
+MODE = seq
+
+PKGCONFIGLIB = 1
+#share/pkgconfig
+PREFIXPATHSET = 1
+NOLIB = 1
+
+BUILDSYSTEM = cmake
+
+DOWNLOADURL = https://github.com/jarro2783/cxxopts/archive/refs/tags/v${PACKAGEVERSION}.tar.gz
+GITREPO = https://github.com/jarro2783/cxxopts.git
+

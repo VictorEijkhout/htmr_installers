@@ -1,0 +1,35 @@
+################################################################
+####
+#### Configuration for Eigen installation
+####
+#### eigen can not be used in Arpack with nvidia compiler:
+#### https://gitlab.com/libeigen/eigen/-/issues/2846
+####
+################################################################
+
+PACKAGE = eigen
+ABOUT = C++ template library for linear algebra
+CATEGORY = library, mathematics
+PACKAGEVERSION = 5.0.1
+URL = https://eigen.tuxfamily.org/index.php?title=Main_Page
+SOFTWAREURL = https://gitlab.com/libeigen/eigen/-/tree/master
+DOWNLOADURL = https://gitlab.com/libeigen/eigen/-/archive/${PACKAGEVERSION}/eigen-${PACKAGEVERSION}.tar.gz
+GITREPO = https://gitlab.com/libeigen/eigen.git
+MODE = seq
+
+BUILDSYSTEM = cmake
+
+MODULES = boost
+CMAKEFLAGS = \
+  -D Boost_DIR=${TACC_BOOST_DIR}
+
+# I can't figure this one out
+# MODULES += fftw3
+# CMAKEFLAGS += \
+#   -D FFTW_LIBRARIES=${TACC_FFTW3_LIB}/libfftw3.so
+
+PKGCONFIG = share/pkgconfig
+PREFIXPATHSET = 1
+INCLUDELOC = include/eigen3
+PACKAGEVERSION==3.1.1 NOLIB = 1
+PACKAGEVERSION==3.1.1 note Eigen got a lib directory after version 3
