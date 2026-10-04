@@ -23,20 +23,21 @@ MODE = seq
 BUILDSYSTEM = scons
 
 MODE = seq
-MODULES = boost eigen hdf5 highfive
+MODULES = boost eigen
+# hdf5 highfive
 
 SCONSFLAGS = \
     doxygen_docs=no \
-    system_highfive='y' \
+    system_highfive='n' \
     boost_inc_dir=${TACC_BOOST_INC} \
     blas_lapack_libs=mkl_rt blas_lapack_dir=${BLASLAPACK_ROOT}
 
-SCONS_EXTRA_INCS = ${TACC_HIGHFIVE_INC}
-SCONS_EXTRA_LIBS = ${TACC_HIGHFIVE_LIB}
+SCONS_EXTRA_INCS = ${TACC_EIGEN_INC}
+SCONS_EXTRA_LIBS = ${TACC_EIGEN_LIB}
 
 HAS_EIGEN = ON
 HAS_EIGEN==ON MODULES += eigen
-HAS_EIGEN==ON SCONS_EXTRA_INCS *= :${TACC_EIGEN_INC}
+# HAS_EIGEN==ON SCONS_EXTRA_INCS *= :${TACC_EIGEN_INC}
 HAS_EIGEN==ON SCONSFLAGS += system_eigen=y
 HAS_EIGEN==OFF SCONSFLAGS += system_eigen=n
 
