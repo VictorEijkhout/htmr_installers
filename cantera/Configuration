@@ -23,7 +23,7 @@ MODE = seq
 BUILDSYSTEM = scons
 
 MODE = seq
-MODULES = boost eigen
+MODULES = boost eigen fmtlib
 # hdf5 highfive
 
 SCONSFLAGS = \
