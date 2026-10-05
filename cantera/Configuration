@@ -52,7 +52,7 @@ HAS_HDF5=OFF
 HAS_HDF5==ON MODULES += hdf5
 HAS_HDF5==ON SCONSFLAGS += \
     hdf_support='y' hdf_include=${TACC_HDF5_INC} hdf_libdir=${TACC_HDF5_LIB}
-HAS_HDF5==OFF SCONSFLAGS += hdf5_support='n'
+HAS_HDF5==OFF SCONSFLAGS += hdf_support='n'
 
 HAS_PYTHON = ON
 HAS_PYTHON==ON SCONSFLAGS += python_package=y
