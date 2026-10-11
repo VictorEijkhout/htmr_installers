@@ -27,7 +27,8 @@ HAS_PHDF5 = OFF
 HAS_PHDF5==ON MODULES += phdf5/1.14
 
 HAS_SUNDIALS = OFF
-HAS_SUNDIALS==ON MODULES += sundials
+HAS_SUNDIALS==ON MODULES   += sundials
+HAS_SUNDIALS==ON DEPENDSON += sundials
 
 # optional packages
 HAS_P4EST = ON
@@ -70,7 +71,6 @@ CMAKEBUILDTYPE = DebugRelease
 INSTALLEXT = real
 INSTALLVARIANT = real
 # dependencies
-DEPENDSON = sundials
 HAS_TRILINOS==ON DEPENDSON = trilinos
 HAS_PHDF5==ON DEPENDSONCURRENT = phdf5
 
