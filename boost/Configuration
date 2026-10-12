@@ -1,0 +1,20 @@
+################################################################
+####
+#### Makefile for Boost installation
+####
+################################################################
+
+PACKAGE = boost
+ABOUT = C++ Libraries
+CATEGORY = library, programming
+PACKAGEVERSION = 1.91.0
+PACKAGEVERSION_DOWNLOAD = 1_91_0
+URL = https://www.boost.org/
+DOCURL = https://www.boost.org/doc/libs/${PACKAGEVERSION_DOWNLOAD}/tools/build/doc/html/index.html
+DOWNLOADURL = https://archives.boost.io/release/1.91.0/source/boost_${PACKAGEVERSION_DOWNLOAD}.tar.gz
+# https://boostorg.jfrog.io/artifactory/main/release/${PACKAGEVERSION}/source/boost_${PACKAGEVERSION_DOWNLOAD}.tar.gz
+
+MODE = seq
+MODULES = 
+
+BUILDSYSTEM = b2
