@@ -7,14 +7,24 @@
 PACKAGE = boost
 ABOUT = C++ Libraries
 CATEGORY = library, programming
-PACKAGEVERSION = 1.91.0
-PACKAGEVERSION_DOWNLOAD = 1_91_0
+
+# Starting 1.90 uses cmake!
+PACKAGEVERSION = 1.92.0
+DOWNLOADURL = https://github.com/boostorg/boost/releases/download/boost-${PACKAGEVERSION}/boost-${PACKAGEVERSION}-cmake.tar.gz
+
 URL = https://www.boost.org/
-DOCURL = https://www.boost.org/doc/libs/${PACKAGEVERSION_DOWNLOAD}/tools/build/doc/html/index.html
-DOWNLOADURL = https://archives.boost.io/release/1.91.0/source/boost_${PACKAGEVERSION_DOWNLOAD}.tar.gz
-# https://boostorg.jfrog.io/artifactory/main/release/${PACKAGEVERSION}/source/boost_${PACKAGEVERSION_DOWNLOAD}.tar.gz
-
+GITREPO = https://github.com/boostorg/boost
 MODE = seq
-MODULES = 
 
-BUILDSYSTEM = b2
+BUILDSYSTEM = cmake
+
+EXTRAFLAGS =
+COMPILER==nvidia EXTRAFLAGS = '-D CMAKE_CXX_FLAGS=-Wc,--max_depth_constexpr_call=1024'
+
+MODULES = 
+CMAKEFLAGS = \
+  -D CMAKE_CXX_STANDARD=17 \
+  ${EXTRAFLAGS} \
+  -D BOOST_ENABLE_MPI=OFF
+PREFIXPATHSET = 1
+
